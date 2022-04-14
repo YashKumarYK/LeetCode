@@ -1,47 +1,6 @@
 class Solution {
 public:
-    vector<vector<int>> generateMatrix(int n) {
-//         vector<int> ans;
-//         vector<vector<int>> matrix;
-//         int startingRow= 0;
-//         int endingRow= n-1;
-//         int startingCol = 0;
-//         int endingCol = n-1;
-        
-//         int count=1;
-//         int total = n*n;
-//         while(count<=total){
-//             //for starting row;
-//             for(int index = startingCol; index<=endingCol; index++){
-//                 ans.push_back(count++);
-//             }
-//             startingRow++;
-            
-//             //for ending column'
-//             for(int index= startingRow; index<=endingRow; index++){
-//                 ans.push_back(count++);
-//             }
-//             endingCol--;
-            
-//             for(int index = endingCol; index>= startingCol; index--){
-//                 ans.push_back(count++);
-//             }
-//             endingRow--;
-            
-//             for(int index= endingRow; index>= startingRow; index--){
-//                 ans.push_back(count++);
-//             }
-//             startingCol++;
-//         }
-        // int k=0;
-        // for(int i=0; i<n; i++){
-        //     for(int j=0; j<n; j++){
-        //         matrix[i][j]= ans[k++];
-        //     }
-        // }
-        // return matrix;
-        // vector<int> ans;
-        
+    vector<vector<int>> generateMatrix(int n) {        
         int count=0;
         int total = n*n;
         
@@ -82,6 +41,6 @@ public:
             startingCol++;
         }
         return matrix;
-        // return ans;
+        
     }
 };

@@ -23,9 +23,9 @@ public:
         int left = isBalanced(root->left);
         int right = isBalanced(root->right);
         
-        int diff = abs( height(root->left) - height(root->right));
+        bool diff = abs( height(root->left) - height(root->right))<=1;
         
-        if((diff<=1) && right&& left) return 1;
+        if(diff && right&& left) return 1;
         else return 0;
     }
 };

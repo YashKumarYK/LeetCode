@@ -154,6 +154,7 @@ public:
         }
         ans.push_back(root->data);
         
+        // left Node traversal
         leftNode(root->left, ans);
         
         //traverse leaf node
@@ -163,6 +164,7 @@ public:
         //right subtree leaf nodes
         leaf(root->right,ans);
         
+        //rightNode traverse
         rightNode(root->right,ans);
         return ans;
     }

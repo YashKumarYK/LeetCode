@@ -14,7 +14,6 @@ public:
     void solve( TreeNode* root, int ans, int &sum  ){
     //base case
         if( root==NULL){
-            
             return;
         }
         ans= root->val +ans*10;
@@ -29,11 +28,7 @@ public:
     int sumNumbers(TreeNode* root) {
         int ans =0;
         int sum =0;
-        // vector<int> v;
-        solve(root, ans, sum);
-        // for(int i =0; i<v.size(); i++){
-        //     sum += v[i];
-        // }
+        solve(root, ans, sum);       
         return sum;
         
     }

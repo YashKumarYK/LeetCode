@@ -27,6 +27,7 @@ public:
                 count++;
             }
         }
+        path.pop_back();
 
     }
     int pathSum(TreeNode* root, int targetSum) {

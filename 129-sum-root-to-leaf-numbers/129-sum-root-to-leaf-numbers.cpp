@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    void solve( TreeNode* root, int ans, vector<int> &v ){
+    void solve( TreeNode* root, int ans, int &sum  ){
     //base case
         if( root==NULL){
             
@@ -19,20 +19,21 @@ public:
         }
         ans= root->val +ans*10;
         if( root->left ==NULL && root->right ==NULL ){
-            v.push_back(ans);
+            // v.push_back(ans);
+            sum = sum+ans;
         }
         
-        solve( root->left, ans, v );
-        solve( root->right, ans, v );
+        solve( root->left, ans, sum );
+        solve( root->right, ans, sum );
     }
     int sumNumbers(TreeNode* root) {
         int ans =0;
         int sum =0;
-        vector<int> v;
-        solve(root, ans, v);
-        for(int i =0; i<v.size(); i++){
-            sum += v[i];
-        }
+        // vector<int> v;
+        solve(root, ans, sum);
+        // for(int i =0; i<v.size(); i++){
+        //     sum += v[i];
+        // }
         return sum;
         
     }

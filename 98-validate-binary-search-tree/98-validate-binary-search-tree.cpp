@@ -11,26 +11,48 @@
  */
 class Solution {
 public:
-    void inorder( TreeNode* root, vector<int> &v){
-        if( root== NULL){
-            return;
-        }
+//     void inorder( TreeNode* root, vector<int> &v){
+//         if( root== NULL){
+//             return;
+//         }
         
-        if(root->left)
-            inorder(root->left, v);
-        v.push_back(root->val);
-        if( root->right)
-            inorder(root->right,v);
-    }
+//         if(root->left)
+//             inorder(root->left, v);
+//         v.push_back(root->val);
+//         if( root->right)
+//             inorder(root->right,v);
+//     }
     
-    bool isValidBST(TreeNode* root) {
-        vector<int> v;
-        inorder(root, v);
-        for(int i=0; i<v.size()-1; i++){
-            if( v[i]>= v[i+1]){
-                return false;
-            }
+    bool isBST( TreeNode* root, long minVal, long maxVal){
+        if( root == NULL){
+            return true;
         }
-        return true;
+        if( root->val > minVal && root->val< maxVal){
+            bool left = isBST( root->left, minVal, root->val);
+            bool right = isBST( root->right, root->val, maxVal);
+            return (left && right);
+        }
+        else{
+            return false;
+        }
+    }
+    bool isValidBST(TreeNode* root) {
+        
+        // approach-1 using inorder traversal
+        // vector<int> v;
+        // inorder(root, v);
+        // for(int i=0; i<v.size()-1; i++){
+        //     if( v[i]>= v[i+1]){
+        //         return false;
+        //     }
+        // }
+        // return true;
+        
+        //approach2 using recursion
+        if (root->left ==NULL && root->right==NULL)
+            return true;
+        bool ans = isBST(root, LONG_MIN, LONG_MAX);
+        return ans;
+        
     }
 };

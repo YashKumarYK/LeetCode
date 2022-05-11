@@ -11,10 +11,17 @@
  */
 class Solution {
 public:
-    TreeNode* minval( TreeNode* root){
+    // TreeNode* minval( TreeNode* root){
+    //     TreeNode* temp = root;
+    //     while( temp->left !=NULL){
+    //         temp= temp-> left;
+    //     }
+    //     return temp;
+    // }
+    TreeNode* maxval(TreeNode* root){
         TreeNode* temp = root;
-        while( temp->left !=NULL){
-            temp= temp-> left;
+        while(temp->right != NULL){
+            temp = temp->right;
         }
         return temp;
     }
@@ -47,9 +54,16 @@ public:
             }
             //2child
             if( root->left !=NULL && root->right !=NULL){
-                int mini = minval( root->right)->val;
-                root->val = mini;
-                root->right = deleteNode(root->right, mini);
+                //option 1
+                // int mini = minval( root->right)->val;
+                // root->val = mini;
+                // root->right = deleteNode(root->right, mini);
+                // return root;
+                
+                //option 2
+                int max = maxval(root->left)->val;
+                root->val = max;
+                root->left = deleteNode(root->left , max);
                 return root;
             }
         }

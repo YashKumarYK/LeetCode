@@ -132,20 +132,7 @@ class Solution
         v.push_back(root->data);
         if(root->right) inorder(root->right, v);
     }
-    
-    // Node* buildBST( vector<int> mergeArr, int mini, int maxi, int &index){
-    //     if(index> mergeArr.size()) return NULL;
-        
-    //     if( mergeArr[index]> maxi && mergeArr[index]< mini){
-    //         return NULL;
-    //     }
-    //     Node* root = new Node(mergeArr[index++]);
-    //     root->left = buildBST( mergeArr, mini, root->data, index);
-    //     root->right = buildBST(mergeArr, root->data, maxi, index);
-        
-    //     return root;
-        
-    // }
+
     vector<int> merge(Node *root1, Node *root2)
     {
       vector<int> v1;
@@ -154,11 +141,7 @@ class Solution
       inorder(root2, v2);
       
       vector<int> mergeArr = v1[0]<v2[0]? merge(v1, v2): merge(v2,v1) ;
-    //   int index =0;
-    //   int mini = INT_MIN;
-    //   int maxi = INT_MAX;
-    //   return buildBST( mergeArr, mini, maxi, index );
-    return mergeArr;
+      return mergeArr;
       
     }
 };

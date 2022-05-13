@@ -4,9 +4,6 @@ public:
         int s=0;
         int e = nums.size()-1;
         int m = s+ (e-s)/2;
-        // if ( nums[s]>target){
-        //     return 0;
-        // }
         if (nums[e]< target){
             return e+1;
         }

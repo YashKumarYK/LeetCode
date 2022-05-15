@@ -19,8 +19,6 @@ public:
                 board[row][col]=i;
             }
         }
-        //for row check
-        
         return true;
     }
 };

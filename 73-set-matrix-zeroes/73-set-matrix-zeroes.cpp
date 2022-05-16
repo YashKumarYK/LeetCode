@@ -35,7 +35,8 @@ public:
 //             }
 //         }
         
-        //approach #2 - using two dummy  vectors
+        //approach #2 - using two dummy array
+        //approach #3 - using first row and colummn
         bool row0= false ;
         bool col0 = false;
         

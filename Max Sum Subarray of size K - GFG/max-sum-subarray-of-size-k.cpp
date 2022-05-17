@@ -13,11 +13,10 @@ public:
             sum= sum+ Arr[i];
         }
         maxsum= sum;
-        int s =0;
-        int e=K;
-        while( e < N){
-            sum = sum-Arr[s++]+ Arr[e++];
-            maxsum = max( sum, maxsum);
+        
+        for( int i=K; i<N; i++){
+            sum = sum- Arr[i-K] + Arr[i];
+            maxsum = max(sum, maxsum);
         }
         return maxsum;
     }

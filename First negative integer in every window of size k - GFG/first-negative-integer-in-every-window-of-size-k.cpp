@@ -29,48 +29,45 @@ int main() {
 
 
 
-vector<long long> printFirstNegativeInteger(long long int A[],long long int N, long long int K) {
-    deque<long long int> dq;
-    vector< long long> ans;
-    
-    //for the first k sized window
-    for(int i=0; i<K; i++){
+vector<long long> printFirstNegativeInteger(long long int A[],
+                                             long long int N, long long int K) {
+
+
+    vector<long long> ans;
+    queue<long long> q;
+    for( int i=0; i<K;i++){
         if( A[i]<0){
-            dq.push_back(i);
+            q.push(A[i]);
         }
     }
-    
-    //storing the ans in the  vector
-    if (dq.size()>0){
-        ans.push_back(A[dq.front()]);
-        
-    }
-    else{
-        ans.push_back(0);
+    if(q.empty()) ans.push_back(0);
+    else {
+        ans.push_back(q.front());
+        if(!q.empty() && q.front() == A[0])
+            q.pop();
+                
     }
     
-    //for the remaining window
     
-    for(int i=K ; i<N; i++){
-        //removing
-        if(!dq.empty() && (i- dq.front()>=K)){
-            dq.pop_front();
+    for( int i=K; i<N; i++){
+        // cout<<q.front();
+        if(A[i]<0)
+        {
+            q.push(A[i]);
         }
+        if(!q.empty())
+            ans.push_back(q.front());
         
-        //addition
-        if( A[i]<0){
-            dq.push_back(i);
+        if(!q.empty() && q.front() == A[i-K+1])
+            q.pop();
+                
+        else if( q.empty()){
+            ans.push_back(0);
         }
-        
-        if (dq.size()==0){
-        ans.push_back(0);
-        }
-        else{
-            ans.push_back(A[dq.front()]);
-        }
-        
-        
+            
     }
     return ans;
+
                                                  
- }
+                                                
+}

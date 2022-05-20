@@ -8,7 +8,7 @@ public:
         int ans1=-1;
         int ans2 = -1;
         
-        //fopr first occurrence
+        //for first occurrence
         while( s<=e){
             if( nums[mid] == target){
                 ans1= mid;

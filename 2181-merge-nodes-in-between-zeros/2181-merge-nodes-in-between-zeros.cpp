@@ -11,22 +11,43 @@
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
-        ListNode* dummy =  new ListNode( -1);
-        ListNode* tail = dummy;
-        ListNode* temp = head->next;
+//         //aproach-1 using a dummy linked list
+//         //T.C - O(N)
+//         //SC- O(N)
+//         ListNode* dummy =  new ListNode( -1);
+//         ListNode* tail = dummy;
+//         ListNode* temp = head->next;
+//         int sum =0;
+//         while( temp!= NULL){
+//             if(  temp->val == 0){
+//                 ListNode* newNode = new ListNode(sum);
+//                 sum =0;
+//                 tail->next= newNode;
+//                 tail = tail->next;
+//             }
+//             else{
+//                 sum = temp->val +sum;
+//             }
+//             temp = temp->next;
+//         }
+//         return dummy->next;
+        
+        //approach 2 - 
         int sum =0;
-        while( temp!= NULL){
-            if(  temp->val == 0){
-                ListNode* newNode = new ListNode(sum);
-                sum =0;
-                tail->next= newNode;
-                tail = tail->next;
+        ListNode* curr= head->next;
+        ListNode* temp = curr;
+        while( temp!=NULL){
+            if( temp->val ==0){
+                curr->val = sum;
+                curr->next = temp ->next;
+                curr= curr->next;
+                sum = 0;
             }
             else{
-                sum = temp->val +sum;
+                sum = sum+temp->val;
             }
-            temp = temp->next;
+            temp= temp->next;
         }
-        return dummy->next;
+        return head->next;
     }
 };

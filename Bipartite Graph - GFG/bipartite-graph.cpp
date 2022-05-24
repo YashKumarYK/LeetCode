@@ -5,38 +5,47 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
 public:
-    bool isThisBipartite( int node, vector<int> &color, vector<int> adj[]){
-        queue<int> q;
-        q.push(node);
-        color[node]=1;
+// using BFS
+    // bool isThisBipartite( int node, vector<int> &color, vector<int> adj[]){
+    //     queue<int> q;
+    //     q.push(node);
+    //     color[node]=1;
         
-        while( !q.empty()){
-            int front = q.front();
-            q.pop();
+    //     while( !q.empty()){
+    //         int front = q.front();
+    //         q.pop();
             
-            //traverse to the neighbour
-            for( auto neigbour : adj[front]){
-                if( color[neigbour] == -1){
-                    q.push(neigbour);
-                    color[neigbour] = 1- color[front];
-                }
-                else if( color[ neigbour]== color[front]){
+    //         //traverse to the neighbour
+    //         for( auto neigbour : adj[front]){
+    //             if( color[neigbour] == -1){
+    //                 q.push(neigbour);
+    //                 color[neigbour] = 1- color[front];
+    //             }
+    //             else if( color[ neigbour]== color[front]){
+    //                 return false;
+    //             }
+    //         }
+    //     }
+    //     return true;
+    // }
+//dfs method
+    bool isThisBipartite( int node, vector<int> &color, vector<int> adj[]){
+        //for the first node
+        if( color[node]==-1) color[node] =1;
+        
+        
+        for( auto i: adj[node]){
+            if( color[i] == -1){
+                color[i] = 1- color[node];
+                if(!isThisBipartite(i , color, adj))
                     return false;
-                }
+            }
+            else if( color[i] == color [node]){
+                    return false;
             }
         }
         return true;
     }
-    
-    // bool isThisBipartite( int node, vector<int> color, vector<int> adj[]){
-    //     color[ node] =1;
-        
-    //     for( auto i: adj[node]){
-    //         if( color[i] == -1){
-    //             return isThisBipartite(i , color, adj){
-    //         }
-    //     }
-    // }
     
 	bool isBipartite(int V, vector<int>adj[]){
 	    vector<int> color(V, -1);
@@ -48,8 +57,6 @@ public:
 	    }
 	    return true;
 	}
-	
-
 };
 
 // { Driver Code Starts.

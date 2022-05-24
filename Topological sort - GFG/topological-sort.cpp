@@ -39,7 +39,7 @@ class Solution
 // 	    return ans;
 // 	}
 	
-	//
+	//BSF METHOD - KAHN'S METHOD
 	vector<int> topoSort(int V, vector<int> adj[]){
 	    queue<int> q;
 	    vector<int> indegree(V);

@@ -36,6 +36,8 @@ class Solution
 //       return helper(W, wt, val, n);
        
 //     }
+
+//dynamic programming
     int knapSack(int W, int wt[], int val[], int n) 
     { 
        int T[n+1][W+1];

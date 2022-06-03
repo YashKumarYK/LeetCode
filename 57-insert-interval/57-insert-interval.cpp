@@ -21,9 +21,13 @@ public:
         
         t= intervals[0];
         for(auto i:intervals){
+            if( t[0]<= newInterval[0] && t[1]>= newInterval[0]){
+                t[1]= max( t[1], newInterval[1]);
+            }
             if( t[1]>= i[0]){
                 t[1] = max( t[1], i[1]);
             }
+            
             else{
                 ans.push_back(t);
                 t= i;

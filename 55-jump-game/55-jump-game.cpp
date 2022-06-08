@@ -20,11 +20,6 @@ public:
             return true;
         // return solve( nums, 0, n, dp);
         vector<bool> dp(n+1);
-        // for(int i=0; i<n; i++){
-        //     if( nums[i] == 0){
-        //         dp[i]= false;
-        //     }
-        // }
         dp[0]=true;
         for(int i=1; i<n; i++){
             for( int j = i-1 ; j>=0; j--){

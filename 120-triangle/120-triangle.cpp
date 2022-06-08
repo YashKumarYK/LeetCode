@@ -1,11 +1,21 @@
 class Solution {
 public:
-    int minimumTotal(vector<vector<int>>& triangle) {
-        vector<int> mini = triangle[triangle.size()-1];
-        for ( int i = triangle.size() - 2; i>= 0 ; --i )
-            for ( int j = 0; j < triangle[i].size() ; ++ j )
-                mini[j] = triangle[i][j] + min(mini[j],mini[j+1]);
-        return mini[0];
+    int solve(vector<vector<int>>& triangle, int r, int i,int j, vector<vector<int>> &dp){
+        if(i>=r || j>= triangle[i].size()) return 0;
         
+        if( dp[i][j] != -1) return dp[i][j];
+        //ith element
+        int first = triangle[i][j] + solve( triangle, r, i+1,j, dp);
+        
+        //i+1th element
+        int second = triangle[i][j] + solve( triangle, r, i+1, j+1, dp);
+        
+        return dp[i][j] = min(first, second);
+        
+    }
+    int minimumTotal(vector<vector<int>>& triangle) {
+        int r = triangle.size();
+        vector<vector<int>> dp(r, vector<int> (triangle[r-1].size(), -1));
+        return solve( triangle, r,0, 0, dp);
     }
 };

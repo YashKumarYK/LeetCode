@@ -1,17 +1,5 @@
 class Solution {
 public:
-    void solve( vector<int> a, vector<int> b, vector<int> &ans){
-        int j =0;
-        int k =0;
-        for(int i=0; i<ans.size(); i++){
-            if( i%2==0){
-                ans[i]=a[j++];
-            }
-            else{
-                ans[i]= b[k++];
-            }
-        }
-    }
     vector<int> rearrangeArray(vector<int>& nums) {
         vector<int> a;
         vector<int> b;
@@ -24,7 +12,16 @@ public:
             }
         }
         
-        solve(a, b, nums);
+        int j =0;
+        int k =0;
+        for(int i=0; i<nums.size(); i++){
+            if( i%2==0){
+                nums[i]=a[j++];
+            }
+            else{
+                nums[i]= b[k++];
+            }
+        }
         return nums;
     }
 };

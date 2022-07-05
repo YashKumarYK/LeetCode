@@ -39,9 +39,11 @@ public:
 //         return root;
 //     }
     TreeNode* constructFromPrePost(vector<int>& preorder, vector<int>& postorder){
-        unordered_map<int, int> po;
-        unordered_map<int, int> pe;
-        int n= preorder.size();
+        int n = preorder.size();
+        vector<int> po(n+1,0);
+        vector<int> pe(n+1,0);
+        
+        
         if( n==0) return NULL;
         for(int i=0; i<n; i++){
             po[postorder[i]] = i;
@@ -56,7 +58,6 @@ public:
         while( !q.empty()){
             TreeNode* front = q.front();
             q.pop();
-                
             int left = pe[front->val]+1;
             int right = po[front->val]-1;
             front->left = left>n-1 || vis[preorder[left]]==1? NULL: new TreeNode( preorder[left]);

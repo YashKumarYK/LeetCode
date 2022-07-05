@@ -3,4 +3,5 @@ using two map, one visited array.
 suppose there is ith element which is added to the root node,
 the left node will be the (i+1)th element of the preorder traverrsal
 the right node will be of the (i-1)th element of the postorder traversal
-to find the ith index, we use the.
+to find the ith index, we use maps. instead of using map we can use vectors of( n+1) size;
+​

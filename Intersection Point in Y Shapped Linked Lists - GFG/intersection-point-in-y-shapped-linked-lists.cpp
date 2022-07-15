@@ -83,34 +83,42 @@ struct Node {
 //Function to find intersection point in Y shaped Linked Lists.
 int intersectPoint(Node* head1, Node* head2)
 {
-    int cnt1 =1;
-    int cnt2=1;
-    Node* temp1 = head1;
-    Node* temp2 = head2;
-    while( temp1->next !=NULL){
-        temp1= temp1->next;
-        cnt1++;
-    }
-    while( temp2->next !=NULL){
-        temp2 = temp2->next;
-        cnt2++;
-    }
-    temp1= head1; 
-    temp2 = head2;
-    if( cnt1<cnt2){
-        swap(temp1,temp2);
-    }
-    int c = abs(cnt1- cnt2);
-    while( c--){
-        temp1= temp1->next;
+    Node* a = head1;
+    Node* b = head2;
+    while( a!=b){
+        a = a==NULL? head2: a->next;;
+        b = b==NULL? head1: b->next;
     }
     
-    while( temp1 != temp2  && temp1!=NULL && temp2 !=NULL){
-        temp1 = temp1->next;
-        temp2 = temp2->next;
-    }
-    if(temp1==NULL || temp2 ==NULL) return -1;
-    return temp1->data;
+    return a==NULL? -1: a->data;
+    // int cnt1 =1;
+    // int cnt2=1;
+    // Node* temp1 = head1;
+    // Node* temp2 = head2;
+    // while( temp1->next !=NULL){
+    //     temp1= temp1->next;
+    //     cnt1++;
+    // }
+    // while( temp2->next !=NULL){
+    //     temp2 = temp2->next;
+    //     cnt2++;
+    // }
+    // temp1= head1; 
+    // temp2 = head2;
+    // if( cnt1<cnt2){
+    //     swap(temp1,temp2);
+    // }
+    // int c = abs(cnt1- cnt2);
+    // while( c--){
+    //     temp1= temp1->next;
+    // }
+    
+    // while( temp1 != temp2  && temp1!=NULL && temp2 !=NULL){
+    //     temp1 = temp1->next;
+    //     temp2 = temp2->next;
+    // }
+    // if(temp1==NULL || temp2 ==NULL) return -1;
+    // return temp1->data;
     
 }
 

@@ -29,22 +29,8 @@ public:
         return v;
     }
     string multiply(string nums1, string nums2) {
-        bool f1= false;
-        for(int i=0;i<nums1.size(); i++){
-            if( nums1[i]!='0'){
-                f1 = true;
-                break;
-            }
-        }
-        if (f1==false ) return "0";
-        bool f2= false;
-        for(int i=0;i<nums2.size(); i++){
-            if( nums2[i]!='0'){
-                f2 = true;
-                break;
-            }
-        }
-        if( f2==false) return "0";
+        
+        if(nums1=="0" || nums2=="0") return "0";
         
         //reversing the string
         reverse(nums1.begin(), nums1.end());

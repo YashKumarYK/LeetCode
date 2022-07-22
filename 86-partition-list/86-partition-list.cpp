@@ -11,31 +11,27 @@
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-        if( head==NULL || head->next==NULL) return head;
-        ListNode* d1 = new ListNode(0);
-        ListNode* t1 = d1;
-        ListNode* d2 = new ListNode(0);
-        ListNode* t2=d2;
+        
+        //lets make two linkedlist;
+        ListNode* smaller_head= new ListNode(0);
+        ListNode* smaller_tail= smaller_head;
+        ListNode* larger_head= new ListNode(0);
+        ListNode* larger_tail= larger_head;
         ListNode* temp = head;
-        while( temp!= NULL){
-            ListNode* newNode= new ListNode( temp->val);
-            if( temp->val <x){
-                t1->next = newNode;
-                t1= newNode;
-                cout<< "t1 -"<< newNode->val<<endl;
+        while(temp!=NULL){
+            if( temp-> val < x ){
+                smaller_tail-> next = temp;
+                smaller_tail = smaller_tail->next;
             }
             else{
-                t2->next= newNode;
-                t2 = newNode;
-                cout<< "t2 -"<< newNode->val<<endl;
+                larger_tail-> next = temp;
+                larger_tail = larger_tail->next;
             }
+            temp= temp->next;
             
-            temp = temp->next;
         }
-        
-        if( d1->next == NULL)
-            return d2->next;
-        t1->next = d2->next;       
-        return d1->next;
+        larger_tail->next= NULL;
+        smaller_tail->next = larger_head->next;
+        return smaller_head->next;
     }
 };

@@ -17,6 +17,7 @@ public:
                 //finding the upper bound of latest indices 
                 auto it = upper_bound( mp[curr[i]].begin(), mp[curr[i]].end(), latest);
                 
+                // if we dont have the index more than the latest, we break the loop
                 if( it== mp[curr[i]].end()) break;
                 
                 if( i== curr.size()-1) count++;

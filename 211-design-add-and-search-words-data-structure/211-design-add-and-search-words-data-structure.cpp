@@ -17,7 +17,7 @@ public:
     WordDictionary() {
     }
     
-    void add( string word, Trie* root){
+    void add( string & word, Trie* root){
         Trie* currNode  = root;
         for( int i=0; i<word.size(); i++){
             int ind = word[i]-'a';

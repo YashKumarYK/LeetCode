@@ -10,7 +10,7 @@ public:
         for( auto i:mp) v.push_back(i.second);
         sort( v.begin(), v.end(), greater<> ());
         int maxi = v[0];
-        cout<<maxi<<" ";
+        
         int count =0;
         int i=0;
         while(i<v.size() && v[i]==maxi){

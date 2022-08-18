@@ -17,8 +17,7 @@ public:
             ++count;
             ++i;
         }
-        cout<<count<<" ";
-        cout<<endl;
+        
         int len = tasks.size();
         int ans = (maxi-1)*(n+1) + count;
         return max( len, ans);

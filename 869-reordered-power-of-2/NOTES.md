@@ -1,11 +1,3 @@
-solution -1
-***BackTracking***
-```
-bool power2( string &v){
-if( v[0]=='0' ) return false;
-int n = stoi(v);
-return (n&(n-1))==0;
-}
 bool solve( string v, int ind){
 if( ind == v.size()){
 return power2(v);
@@ -24,5 +16,18 @@ return solve( s, 0);
 }
 ```
 ​
-Solution -2
+**Solution -2 ( optimal - 3 ms)**
+***sorting and comparing***
+```
+bool reorderedPowerOf2(int n) {
+string s = to_string(n);
+sort( s.begin(), s.end());
+for(int i=0; i<31;++i){
+string s1 = to_string( (int)pow(2,i));
+sort( s1.begin(), s1.end());
+if( s1==s) return true;
+}
+return false;
+}
+```
 ​

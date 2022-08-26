@@ -10,8 +10,6 @@ public:
         if( ind == v.size()){
             return power2(v);
         }
-        
-        
         for(int i = ind ; i<v.size(); i++){
             swap(v[i], v[ind]);
             
@@ -23,7 +21,7 @@ public:
     }
     
     bool reorderedPowerOf2(int n) {
-        vector<int> v;
+        if( (n&(n-1))==0) return true;
         string s = to_string(n);
   
         return solve( s, 0);

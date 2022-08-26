@@ -3,7 +3,7 @@ public:
     int minimumOperations(vector<int>& nums, int start, int goal) {
         int n = nums.size();
         queue<int> q;
-        set<int> s;
+        unordered_map<int, int> s;
         
         q.push(start);
         int count =0;
@@ -17,7 +17,8 @@ public:
                 if( front<0 || front >1000 || s.count(front)){
                     continue;
                 }
-                s.insert(front);
+                // s.insert(front);
+                s[front]++;
                 
                 for( int i=0; i<n; ++i){
                     q.push( front+ nums[i]);

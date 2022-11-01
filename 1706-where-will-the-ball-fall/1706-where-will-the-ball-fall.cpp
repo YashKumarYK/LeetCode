@@ -34,8 +34,7 @@ public:
             if(solve( 0, i, r, grid, col)) ans.push_back(col);
             else ans.push_back(-1);
         }
-        return ans;
-               
+        return ans; 
     }
     
 };

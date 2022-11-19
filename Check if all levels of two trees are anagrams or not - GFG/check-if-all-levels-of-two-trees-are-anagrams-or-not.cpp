@@ -89,30 +89,23 @@ class Solution{
         while(!q1.empty() && !q2.empty()){
             if(q1.size()!= q2.size()) return false;
             int s = q1.size();
-            map<int, int> mp;
+            int ans=0;
             for(int i=0; i<s; i++){
                 Node* f1 = q1.front();
+                Node* f2 = q2.front();
+                q2.pop();
                 q1.pop();
-                mp[f1->data]++;
                 
+                ans^=f2->data;
+                ans^=f1->data;
                 if(f1->left) q1.push(f1->left);
                 if(f1->right) q1.push(f1->right);
                 
-            }
-            for(int i=0; i<s; ++i){
-                Node* f2 = q2.front();
-                q2.pop();
-                if(mp.find(f2->data)!= mp.end()){
-                    mp[f2->data]--;
-                    if(mp[f2->data]==0){
-                        mp.erase(f2->data);
-                    }
-                }
-                
                 if(f2->left) q2.push(f2->left);
                 if(f2->right) q2.push(f2->right);
+                
             }
-            if(mp.size()!=0) return false;
+            if(ans!=0) return false;
         }
         return true;
     

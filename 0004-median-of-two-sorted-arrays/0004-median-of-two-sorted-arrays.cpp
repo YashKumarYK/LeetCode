@@ -1,42 +1,38 @@
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-        //approach1-> merging logic without the use of resulting array
-        int n = nums1.size();
+        //approach2->BINARY SEARCH
+        if(nums1.size()>nums2.size()) return findMedianSortedArrays(nums2, nums1);
+        int n =nums1.size();
         int m = nums2.size();
-        int idx1= (n+m)/2;
-        int idx2 = idx1-1;
-        int cnt =0;
-        int i=0;
-        int j=0;
-        int el1=INT_MIN;
-        int el2=INT_MIN;
-        while(i<n && j<m){
-            if(nums1[i]<nums2[j]){
-                if(cnt==idx1) el1 = nums1[i];
-                if(cnt==idx2) el2 = nums1[i];
-                cnt++;
-                i++;
+        int k = (n+m+1)/2;
+        int low = 0;
+        int high = n;
+
+        while(low<=high){
+            int cut1 = low+(high-low)/2;
+            int cut2 = k-cut1;
+            int l1 = cut1==0?INT_MIN: nums1[cut1-1];
+            int l2 = cut2==0?INT_MIN: nums2[cut2-1];
+            int r1 = cut1==n? INT_MAX: nums1[cut1];
+            int r2 = cut2==m? INT_MAX: nums2[cut2];
+
+            //valid condition
+            if(l1<=r2 && l2<=r1){
+                if((n+m)%2==0){
+                    return (double)(max(l1,l2)+ min(r1,r2))/2.0;
+                }else{
+                    return double(max(l1,l2));
+                }
+            }
+            else if(l1>r2){
+                //move the cut to the left
+                high = cut1-1;
             }else{
-                if(cnt==idx1) el1 = nums2[j];
-                if(cnt==idx2) el2 = nums2[j];
-                cnt++;
-                j++;
+                //move the cut to the right
+                low = cut1+1;
             }
         }
-        while(i<n){
-            if(cnt==idx1) el1 = nums1[i];
-            if(cnt==idx2) el2 = nums1[i];
-            cnt++;
-            i++;
-        }
-        while(j<m){
-            if(cnt==idx1) el1 = nums2[j];
-            if(cnt==idx2) el2 = nums2[j];
-            cnt++;
-            j++;
-        }
-        if((m+n)%2) return el1;
-        return (double) (el1+el2)/2;
+        return 0.0;
     }
 };

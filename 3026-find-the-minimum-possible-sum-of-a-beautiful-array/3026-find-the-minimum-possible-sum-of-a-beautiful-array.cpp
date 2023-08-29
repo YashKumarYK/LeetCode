@@ -3,17 +3,17 @@ public:
     long long minimumPossibleSum(int n, int target) {
         if(n==1) return 1;
         long long sum =0;
-        unordered_map<int,int> mp;
-        int i=1;
-        while(n){
-            if(mp.count(target-i)){
-                i++;
-                continue;
-            }
-            sum+= i;
-            mp[i]++;
-            n--;
-            i++;
+        int half = target/2;
+        int cnt =0;
+        for(int i=1;i<=half; i++){
+            cnt++;
+            sum += i;
+            if(cnt == n) return sum;
+        }
+        
+        while(cnt<n){
+            sum += target++;
+            cnt++;
         }
         return sum;
     }

@@ -16,38 +16,68 @@ public:
 
 class Solution {
 public:
-    void insertAtTail( Node* &head, Node* &tail, int val){
+    void insertatTail(Node* & cloneTail, Node* &cloneHead, int val){
         Node* newNode = new Node(val);
-        if(!head){
-            head = newNode;
-            tail = newNode;
-            return ;
-        } 
-        tail->next= newNode;
-        tail = newNode;
+        if(cloneHead==NULL){
+            cloneTail = newNode;
+            cloneHead = newNode;
+            return;
+        }
+        cloneTail->next = newNode;
+        cloneTail = newNode; 
     }
     Node* copyRandomList(Node* head) {
-        unordered_map<Node*, Node*> mp;
+        Node* cloneNode=NULL;
+        Node* cloneTail = NULL;
         Node* cloneHead = NULL;
-        Node* cloneTail= cloneHead;
-        Node *temp = head;
+        Node* temp =head;
         while(temp){
-            insertAtTail(cloneHead, cloneTail, temp->val);
-            mp[temp] =  cloneTail;
-            temp = temp->next;               
-        }
-
-        Node* cloneTemp = cloneHead;
-        temp = head;
-
-        while(cloneTemp && temp){
-            cloneTemp->random = mp[temp->random];
-            cloneTemp= cloneTemp->next;
+            insertatTail(cloneTail,cloneHead, temp->val);
             temp = temp->next;
         }
 
+        //joining both LL
+        Node* curr = head;
+        Node* cloneCurr = cloneHead;
+        while(curr && cloneCurr){
+            Node* currnext = curr->next;
+            curr->next = cloneCurr;
+            
+            Node* cloneNext = cloneCurr->next;
+            cloneCurr->next = currnext;
+            
+            curr = currnext;
+            cloneCurr = cloneNext;
+            
+        }
+
+        temp= head;
+        while(temp){
+            if(temp->next)
+                temp->next->random = temp->random? temp->random->next: temp->random;
+            
+            temp= temp->next->next;
+        }
+        
+        curr = head;
+        cloneCurr = cloneHead;
+        while(curr && cloneCurr){
+            curr->next = curr->next->next;
+
+            cloneCurr->next = cloneCurr->next?cloneCurr->next->next:cloneCurr->next;
+            
+            curr = curr->next;
+            cloneCurr = cloneCurr->next;
+
+        }
+
         return cloneHead;
-        
-        
     }
 };
+
+
+// 1->2->3->4->5->6
+
+// 1->2->3->4->5->6
+
+// curr->next->random = curr->random->next;

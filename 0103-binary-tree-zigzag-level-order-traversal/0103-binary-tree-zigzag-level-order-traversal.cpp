@@ -19,17 +19,20 @@ public:
         q.push(root);
         int level=0;
         while(!q.empty()){
-            vector<int>v;
+            
             int s=q.size();
+            vector<int>v(s);
             for(int i=0;i<s;i++){
                 TreeNode* front=q.front();
                 q.pop();
-                v.push_back(front->val);
+        
+                int index = i;
+                if(level%2==1){
+                    index = s-i-1;
+                }
+                v[index] = front->val;
                 if(front->left) q.push(front->left);
                 if(front->right) q.push(front->right);
-            }
-            if(level%2==1){
-                reverse(v.begin(), v.end());
             }
             ans.push_back(v);
             level++;
